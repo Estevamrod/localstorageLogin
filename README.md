@@ -1,0 +1,1 @@
+Aprendendo como funciona LocalStorage e utilizando para fazer uma tela de login e cadastro
