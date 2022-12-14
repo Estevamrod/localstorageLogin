@@ -1,12 +1,10 @@
-var x = []
-function test (item) {
-    x.push(item);
+var x = [
+    ["oi","te"],
+    ["adsas","asdasd"]
+];
+try{
+    console.log(salve);
 }
-test({
-    oi: "salve",
-    b: "aa",
-})
-
-var tst = x['oi'];
-
-console.log(tst);
+catch(err) {
+    console.log(err);
+}
