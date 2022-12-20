@@ -8,10 +8,10 @@ function clearInputs() {
 }
 //
 btnCon.onclick = function () {
-    var email = document.querySelector("#email").value;
-    var senha = document.querySelector("#senha").value;
+    var user_email = document.querySelector("#email").value;
+    var user_senha = document.querySelector("#senha").value;
     //
-    if (email == "" || senha == "") {
+    if (user_email == "" || user_senha == "") {
         alert("Voce esqueceu de preencher um dos campos");
     } else {
         //
@@ -25,22 +25,22 @@ btnCon.onclick = function () {
                 const value_senha = data_user[i]['senha'];
                 const value_nome = data_user[i]['nome'];
                 //
-                if (email == value_email && senha == value_senha) {
-                    var user_email = value_email;
-                    var user_password = value_senha;
-                    var user_name = value_nome
+                if (user_email == value_email && user_senha == value_senha) {
+                    var result_email = value_email;
+                    var result_password = value_senha;
+                    var result_name = value_nome
                 }
                 //
             }
-            if (email == user_email && senha == user_password) {
+            if (user_email == result_email && user_senha == result_password) {
                 console.log("from array data, we get email, password and the user's name");
-                console.log("email: " + user_email + "\n" +"senha: " + user_password);
-                alert("Seja Bem-vindo " + "' " + user_name + " '");
+                console.log("email: " + result_email + "\n" +"senha: " + result_password + "\n" + "nome: " + result_name);
+                alert("Seja Bem-vindo " + "' " + result_name + " '");
             } else {
                 alert("Voce preencheu um dos campos incorretamente!");
             }
         } else {    
-            alert("ERRO 274");
+            alert("ERRO 500"); //Internal Server Error => memoria vazia (localstorage)
             window.location.href = "cadastro.html";
         }
         clearInputs();
