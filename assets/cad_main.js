@@ -1,20 +1,36 @@
 const btnCad = document.querySelector("#btn_cad");
-let data = [];
+let userData = [];
 //
-function addData (item) {
-    data.push(item);
-    window.localStorage.setItem('user', JSON.stringify(data));
+function addUserData (item) {
+    const getEmailInput = item['email'];
+    for (var i = 0; i < userData.length; i++) {
+        const getEmailfromList = userData[i]['email'];
+        if (getEmailInput == getEmailfromList) {
+            var result = getEmailfromList
+        }
+    }
+    if (result) {
+        alert("Esses dados ja existem!");
+        alert("Por favor, digite novos valores");
+    } else {
+        alert("Cadastro Realizado com sucesso " + "' " + item['nome'] + " '");
+        userData.push(item);
+        window.localStorage.setItem('user', JSON.stringify(userData));
+        window.location.href = 'index.html';
+    }
+    clearInputs();
 }
+//
+if (localStorage.length != 0) {
+    const locate_userData = localStorage.getItem('user');
+    userData = JSON.parse(locate_userData);
+    console.log(userData);
+}
+//
 function clearInputs() {
     var user_name = document.querySelector("#nome").value = '';
     var user_email = document.querySelector("#email").value = '';
     var user_senha = document.querySelector("#senha").value = '';    
-}
-//
-if (localStorage.length != 0) {
-    const loc_userdata = localStorage.getItem('user');
-    data = JSON.parse(loc_userdata);
-    console.log(data);
 }
 //
 btnCad.onclick = function () {
@@ -25,17 +41,13 @@ btnCad.onclick = function () {
     if (user_name == "" || user_email == "" || user_senha == "") {
         alert("Voce precisa preencher todos os campos!");
     } else{
-        //
-        addData({
+        addUserData({
             email: user_email,
             senha: user_senha,
             nome: user_name
         });
-        //  
-        alert("Cadastro realizado com sucesso!");
-        document.querySelector("#btn_cad").disabled = true;
-        window.location.href = 'index.html';
-        console.log(data);
+        //
+        console.log(userData);
     }
     clearInputs();
 }
