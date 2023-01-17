@@ -7,6 +7,21 @@ function clearInputs() {
     var senha = document.querySelector("#senha").value = '';
 }
 //
+function verifyLocalstorage () {
+    const verifyLength = localStorage.length
+    try {
+        if (verifyLength == 0) {
+            alert("ERROR 500");
+            alert("Localizamos um erro e precisamos te redirecionar para a pagina de cadastros!");
+            window.location.href = "cadastro.html";
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+//
+verifyLocalstorage();
+//
 btnCon.onclick = function () {
     var user_email = document.querySelector("#email").value;
     var user_senha = document.querySelector("#senha").value;
@@ -23,12 +38,11 @@ btnCon.onclick = function () {
                 const data_user = data;
                 const value_email = data_user[i]['email'];
                 const value_senha = data_user[i]['senha'];
-                const value_nome = data_user[i]['nome'];
                 //
                 if (user_email == value_email && user_senha == value_senha) {
                     var result_email = value_email;
                     var result_password = value_senha;
-                    var result_name = value_nome
+                    var result_name = data_user[i]['nome'];
                 }
                 //
             }
@@ -39,9 +53,6 @@ btnCon.onclick = function () {
             } else {
                 alert("Voce preencheu um dos campos incorretamente!");
             }
-        } else {    
-            alert("ERRO 500"); //Internal Server Error => memoria vazia (localstorage)
-            window.location.href = "cadastro.html";
         }
         clearInputs();
     }
